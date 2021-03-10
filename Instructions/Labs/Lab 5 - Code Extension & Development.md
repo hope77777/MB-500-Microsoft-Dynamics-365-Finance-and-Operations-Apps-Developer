@@ -1,36 +1,8 @@
----
-lab:
-    title: 'Exercise 01: Code extension and development'
-    module: 'Module 05: Code development and testing'
----
+# MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer**
 
-**MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer**
+## Lab 5 – Code Extension & Development**
 
-**Lab 5 – Code Extension & Development**
-
-Change Record
-=============
-
-| Version | Date        | Change                                                           |
-|---------|-------------|------------------------------------------------------------------|
-| 1.0     | 10 Jan 2020 | Initial release                                                  |
-| 1.01    | 22 Jan 2021 | Remove table of contents; update branding; remove LCS references |
-
-Lab Environment
-===============
-
-In order to run this lab, you will need:
-
--   An all-in-one demo data VM with
-
-    -   Visual Studio installed, and a Visual Studio subscription
-
-    -   A browser to run the user interface
-
-    -   Lab 4 – Metadata Extension & Development completed
-
-Lab Overview
-============
+### Lab Overview
 
 -   Dependency: Lab 4 – Metadata Extension & Development should be completed
 
@@ -38,8 +10,7 @@ Lab Overview
 
 **Estimated time to complete this lab: 85+ minutes**
 
-Scenario 1 (Exercises 1-2)
-==========================
+### Scenario 1 (Exercises 1-2)
 
 -   You need to add validation in the Customer Fly Details table to ensure From
     and To Airports are not the same
@@ -66,8 +37,7 @@ Scenario 1 (Exercises 1-2)
 -   You need to create a new runnable class that will update the Customer tier
     status reading data from Customer Flying Details
 
-Scenario 2 (Exercises 3-4)
-==========================
+### Scenario 2 (Exercises 3-4)
 
 -   You need to create a new package (MyLabAirlines) that will have the
     DynamicsDevTraining package as a reference
@@ -100,11 +70,9 @@ Scenario 2 (Exercises 3-4)
 -   You need to develop code to update the Flying miles and Loyalty points in
     the DDTCustFlyDetails table based on data entered in the Airport Miles Chart
 
-Exercise 1: Develop Table Methods
-=================================
+# Exercise 1: Develop Table Methods
 
-Task 1: Table DDTCustFlyDetails \> validateField Method
--------------------------------------------------------
+## Task 1: Table DDTCustFlyDetails \> validateField Method
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -155,8 +123,7 @@ Task 1: Table DDTCustFlyDetails \> validateField Method
 
 	```
 
-Task 2: Table DDTTierRange \> find Method
------------------------------------------
+## Task 2: Table DDTTierRange \> find Method
 
 1.  Open DynamicsDevProject in Solution Explorer and search for DDTTierRange
     table
@@ -184,8 +151,7 @@ Task 2: Table DDTTierRange \> find Method
 	```
 
 
-Task 3: Table DDTTierRange \> new Method
-----------------------------------------
+## Task 3: Table DDTTierRange \> new Method
 
 1.  Open DynamicsDevProject in Solution Explorer and search for DDTTierRange
     table
@@ -209,8 +175,7 @@ Task 3: Table DDTTierRange \> new Method
 	```
 
 
-Task 4: Table CustTable \> new Method
--------------------------------------
+## Task 4: Table CustTable \> new Method
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -244,8 +209,7 @@ Task 4: Table CustTable \> new Method
 
 
 
-Task 5: Table DDTAirport \> new Method
---------------------------------------
+## Task 5: Table DDTAirport \> new Method
 
 1.  Open DynamicsDevProject in Solution Explorer and search for DDTAirport table
 
@@ -264,11 +228,9 @@ Task 5: Table DDTAirport \> new Method
     }
     ```
 
-Exercise 2: Develop Form Methods
-================================
+# Exercise 2: Develop Form Methods
 
-Task 1: Form DDTTierRange \> Data Source \> validateWrite method
-----------------------------------------------------------------
+## Task 1: Form DDTTierRange \> Data Source \> validateWrite method
 
 1.  Open DynamicsDevProject in Solution Explorer and search for **DDTTierRange**
     form
@@ -279,8 +241,7 @@ Task 1: Form DDTTierRange \> Data Source \> validateWrite method
 Replace <pre>ret = super();</pre> with <pre>ret = super() && (DDTTierRange.ToMiles \> DDTTierRange.FromMiles); </pre>
 
 
-Task 2: Form DDTCustFlyDetails \> Data Source \> initValue method
------------------------------------------------------------------
+## Task 2: Form DDTCustFlyDetails \> Data Source \> initValue method
 
 1.  Open DynamicsDevProject in Solution Explorer and search for
     **DDTCustFlyDetails** form
@@ -307,11 +268,9 @@ Task 2: Form DDTCustFlyDetails \> Data Source \> initValue method
 
     2.  Allow Edit On Create: No
 
-Exercise 3: Develop new Class
-=============================
+# Exercise 3: Develop new Class
 
-Task 1: Create a Runnable class DDTUpdateTier
----------------------------------------------
+## Task 1: Create a Runnable class DDTUpdateTier
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -361,8 +320,7 @@ Task 1: Create a Runnable class DDTUpdateTier
     ```
 
 
-Task 2: Execute class DDTUpdateTier from CustTable form
--------------------------------------------------------
+## Task 2: Execute class DDTUpdateTier from CustTable form
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -390,10 +348,9 @@ Task 2: Execute class DDTUpdateTier from CustTable form
 8.  Drag Action menu item DDTCustTierUpdateAction and drop it under the newly
     created button group DDTCustTierButtonGroup
 
-Check Output
-============
+## Check Output
 
-   **Scenario - 1**
+### Scenario - 1
 
 -   Build solution
 
@@ -414,11 +371,9 @@ Check Output
     the Customer form. A process will get executed that will update the Customer
     Tier field.
 
-Exercise 4: New package creation
-================================
+# Exercise 4: New package creation
 
-Task 1: Create a new package extending DynamicsDevTraining
-----------------------------------------------------------
+## Task 1: Create a new package extending DynamicsDevTraining
 
 1.  From **Dynamics 365 \> Model Management \> Create Model**, create a new
     model MyLabAirlines
@@ -459,8 +414,7 @@ Task 1: Create a new package extending DynamicsDevTraining
 
     -  Company: USMF
 
-Task 2: Create a table: MLAAirportMilesChart
---------------------------------------------
+## Task 2: Create a table: MLAAirportMilesChart
 
 1.  Open MyLabAirlines in Solution Explorer
 
@@ -565,8 +519,7 @@ Task 2: Create a table: MLAAirportMilesChart
     }
     ```
 
-Task 3: Create a form: MLAAirportMilesChart
--------------------------------------------
+## Task 3: Create a form: MLAAirportMilesChart
 
 1.  Open MyLabAirlines in Solution Explorer
 
@@ -611,8 +564,7 @@ Task 3: Create a form: MLAAirportMilesChart
 
         3.  FlyingMiles
 
-Task 4: Create a Display Menu Item: Airport Miles Chart 
---------------------------------------------------------
+## Task 4: Create a Display Menu Item: Airport Miles Chart 
 
 1.  Open MyLabAirlines in Solution Explorer
 
@@ -628,8 +580,7 @@ Task 4: Create a Display Menu Item: Airport Miles Chart
 
     3.  Label: *Airport Miles Chart*
 
-Task 5: Menu Extension: AccountsReceivable
-------------------------------------------
+## Task 5: Menu Extension: AccountsReceivable
 
 1.  Open MyLabAirlines in Solution Explorer
 
@@ -644,8 +595,7 @@ Task 5: Menu Extension: AccountsReceivable
 5.  Open AccountsReceivable.MyLabAirlines in the designer to drag the display
     Menu item MLAAirportMilesChartDisplay and drop it under **Setup** submenu
 
-Task 6: EDT: Loyalty Points
----------------------------
+## Task 6: EDT: Loyalty Points
 
 1.  Open MyLabAirlines in Solution Explorer
 
@@ -655,8 +605,7 @@ Task 6: EDT: Loyalty Points
 
 4.  Create a new EDT MLALoyaltyPoints (Label: *Loyalty Points*)
 
-Task 7: EDT: Loyalty Percent
-----------------------------
+## Task 7: EDT: Loyalty Percent
 
 1.  Open MyLabAirlines in Solution Explorer
 
@@ -668,8 +617,7 @@ Task 7: EDT: Loyalty Percent
 
     1.  Extends: Percent
 
-Task 8: Table Extension: DDTCustFlyDetails
-------------------------------------------
+## Task 8: Table Extension: DDTCustFlyDetails
 
 1.  Open MyLabAirlines in Solution Explorer
 
@@ -685,8 +633,7 @@ Task 8: Table Extension: DDTCustFlyDetails
     dragging the EDT MLALoyaltyPoints and dropping on the field node of the
     extended table
 
-Task 9: Form Extension: DDTCustFlyDetails
------------------------------------------
+## Task 9: Form Extension: DDTCustFlyDetails
 
 1.  Save all.
 
@@ -706,8 +653,7 @@ Task 9: Form Extension: DDTCustFlyDetails
 7.  Select the FlyingMiles field in the FlyInfoGrid and change the AllowEdit
     property to No
 
-Task 10: Table Extension: DDTTierRange
---------------------------------------
+## Task 10: Table Extension: DDTTierRange
 
 1.  Open MyLabAirlines in Solution Explorer
 
@@ -722,8 +668,7 @@ Task 10: Table Extension: DDTTierRange
     the EDT MLALoyaltyPercent and dropping it on the fields node of the extended
     table
 
-Task 11: Form Extension: DDTTierRange
--------------------------------------
+## Task 11: Form Extension: DDTTierRange
 
 1.  Save all.
 
@@ -739,8 +684,7 @@ Task 11: Form Extension: DDTTierRange
 6.  Under the datasource, find the field MLALoyaltyPercent; drag and add the
     field on the CustTierGrid
 
-Task 12: Chain of Command: Datasource of DDTTierRange form
-----------------------------------------------------------
+## Task 12: Chain of Command: Datasource of DDTTierRange form
 
 1.  Open MyLabAirlines in Solution Explorer
 
@@ -785,8 +729,7 @@ Task 12: Chain of Command: Datasource of DDTTierRange form
     ```
 
 
-Task 13: Table DDTCustFlyDetails \> modifiedField Method
---------------------------------------------------------
+## Task 13: Table DDTCustFlyDetails \> modifiedField Method
 
 1.  Open MyLabAirlines in Solution Explorer
 
@@ -837,29 +780,28 @@ Task 13: Table DDTCustFlyDetails \> modifiedField Method
     ```
 
 
-Check Output
-============
+## Check Output
 
-   **Scenario - 2**
+### Scenario - 2
 
 -   Save all and build.
 
 -   Under **Accounts Receivables \> Setup**, find the **Airport Miles Chart**
     form. Enter the following data in that form:
-
-| From Airport | To Airport | Flying Miles |
-|--------------|------------|--------------|
-| DEL          | BOM        | 400          |
-| DEL          | HYD        | 500          |
-| DEL          | BLR        | 1000         |
-| DEL          | MAS        | 1000         |
-| BOM          | HYD        | 300          |
-| BOM          | BLR        | 400          |
-| BOM          | MAS        | 500          |
-| HYD          | BLR        | 200          |
-| HYD          | MAS        | 300          |
-| BLR          | MAS        | 200          |
-
+    
+    | From Airport | To Airport | Flying Miles |
+    |--------------|------------|--------------|
+    | DEL          | BOM        | 400          |
+    | DEL          | HYD        | 500          |
+    | DEL          | BLR        | 1000         |
+    | DEL          | MAS        | 1000         |
+    | BOM          | HYD        | 300          |
+    | BOM          | BLR        | 400          |
+    | BOM          | MAS        | 500          |
+    | HYD          | BLR        | 200          |
+    | HYD          | MAS        | 300          |
+    | BLR          | MAS        | 200          |
+    
 -   Open the Flying Details fast tab under **Accounts Receivables \> Customers
     \> All Customers** and find the new column “Loyalty Points”
 
