@@ -1,35 +1,8 @@
----
-lab:
-    title: 'Exercise 01: Data structure development'
-    module: 'Module 03: Solution design'
----
+# MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer
 
-**MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer**
+## Lab 3 – Data Structure Development**
 
-**Lab 3 – Data Structure Development**
-
-Change Record
-=============
-
-| Version | Date        | Change                                                                                        |
-|---------|-------------|-----------------------------------------------------------------------------------------------|
-| 1.0     | 10 Jan 2020 | Initial release                                                                               |
-| 1.01    | 22 Jan 2021 | Added instructions re: saving work, resource files, importing and exporting, changing company |
-| 1.02    | 29 Jan 2021 | Restored images |
-
-Lab Environment
-===============
-
-In order to run this lab, you will need:
-
--   An all-in-one demo data VM with
-
-    -   Visual Studio installed, and a Visual Studio subscription
-
-    -   Lab 1 – Development Environment Configuration completed
-
-Lab Overview
-============
+### Lab Overview
 
 -   Dependency: Lab 1 – Development Environment Configuration should be
     completed
@@ -38,21 +11,18 @@ Lab Overview
 
 **Estimated time to complete this lab: 20+ minutes**
 
-Scenario
-========
+### Scenario
 
 In this lab, we will create some new and extend some existing Data Models, which
 we will work on in subsequent labs. These Data Models will capture data related
 to customer Flying Details and Tier status.
 
-Exercise 1: Add new Data Models
-===============================
+# Exercise 1: Add new Data Models
 
 In this exercise, you will add some data objects which will be used in
 subsequent lab exercises.
 
-Prerequisite tasks
-------------------
+### Prerequisite tasks
 
 -   There are resource files available which will be needed at various points in
     the course. They may already be provided for you on your training VM;
@@ -78,8 +48,7 @@ Prerequisite tasks
 
 -   When you log in to your application, the company should be changed to USMF.
 
-Task 1: Base Enum: Customer Tier
---------------------------------
+## Task 1: Base Enum: Customer Tier
 
 1.  Open Visual Studio as administrator, and DynamicsDevProject in Solution
     Explorer
@@ -101,8 +70,7 @@ Task 1: Base Enum: Customer Tier
    It’s important to do them in this order so that None is the default, which
    is value 0.
 
-Task 2: EDT: Airport Code
--------------------------
+## Task 2: EDT: Airport Code
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -112,8 +80,7 @@ Task 2: EDT: Airport Code
 
 4.  Create a new EDT **DDTAirportCode** (Label: **Airport code**)
 
-Task 3: EDT: Flying Miles
--------------------------
+## Task 3: EDT: Flying Miles
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -123,8 +90,7 @@ Task 3: EDT: Flying Miles
 
 4.  Create a new EDT **DDTFlyingMiles** (Label: **Flying miles**)
 
-Task 4: Table: Tier Range
--------------------------
+## Task 4: Table: Tier Range
 
 1.  Save all, so that the EDTs are available for the table
 
@@ -160,8 +126,7 @@ Task 4: Table: Tier Range
 
     2.  Allow Duplicates: No
 
-Task 5: Table: Airport Code
----------------------------
+## Task 5: Table: Airport Code
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -224,8 +189,7 @@ Task 5: Table: Airport Code
     6.  New Normal Relation: (Right click the relation, select New \> Normal)
         DDTAirport.CityRecId = LogisticsAddressCity.RecId
 
-Task 6: Table: Customer Fly Details
------------------------------------
+## Task 6: Table: Customer Fly Details
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -338,14 +302,12 @@ Task 6: Table: Customer Fly Details
 
 11. Select the **Save All** icon
 
-Exercise 2: Extend Data Models
-==============================
+# Exercise 2: Extend Data Models
 
 In this exercise, you will extend some standard data models which will be used
 in subsequent lab exercises.
 
-Task 1: Table Extension: CustTable
-----------------------------------
+## Task 1: Table Extension: CustTable
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -369,8 +331,7 @@ Task 1: Table Extension: CustTable
 
     2.  Add field: DDTCustomerTier
 
-Check Output
-============
+## Check Output
 
    Save all, then right click on your solution and select Build solution. This
    takes a minute or two. Verify that there are no errors. (There will be
