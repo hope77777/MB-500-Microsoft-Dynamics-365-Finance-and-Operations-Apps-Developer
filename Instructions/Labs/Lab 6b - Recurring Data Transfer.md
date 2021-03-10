@@ -1,49 +1,8 @@
----
-lab:
-    title: 'Exercise 02: Recurring data transfer'
-    module: 'Module 06: Data migration'
----
+# MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer
 
-**MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer**
+## Lab 6b - Recurring Data Transfer
 
-**Lab 6b - Recurring Data Transfer**
-
-# **Do not use after 31 Mar 2021**
-
-Change Record
-=============
-
-| Version | Date        | Change                                                           |
-|---------|-------------|------------------------------------------------------------------|
-| 1.0     | 10 Jan 2020 | Initial release                                                  |
-| 1.01    | 22 Jan 2021 | Remove table of contents; update branding; remove LCS references |
-| 1.02    | 29 Jan 2021 | Restored images |
-| 1.03    | 04 Mar 2021 | Lab must timebomb, as portal.azure.com does not support Internet Explorer 11 after 31 Mar |
-
-Lab Environment
-===============
-
-In order to run this lab, you will need:
-
--   An all-in-one demo data VM with
-
-    -   Visual Studio installed, and a Visual Studio subscription
-
-    -   A browser to run the user interface
-
-    -   Lab 1 – Development Environment Configuration completed
-
--   Access to the Azure portal to register your application in Azure Active
-    Directory through the link <https://portal.azure.com>
-
--   Recurring Integration Scheduler, which may be downloaded from
-    <https://github.com/Microsoft/Recurring-Integrations-Scheduler/releases> as
-    Recurring.Integrations.Scheduler.Setup.exe. This may require .NET 4.7.2. If
-    not provided on the VM, you may find them at
-    <http://aka.ms/mb500labresources>
-
-Lab Overview
-============
+### Lab Overview
 
 -   Dependency: Lab 1 – Development Environment Configuration should be
     completed
@@ -56,8 +15,7 @@ Lab Overview
 
 **Estimated time to complete this lab: 45+ minutes**
 
- Scenario
-=========
+### Scenario
 
 -   Register your Finance and Operations application in Azure AD
 
@@ -67,11 +25,9 @@ Lab Overview
 
 -   Execute the recurring data transfer for the Customers entity
 
-Exercise 1: Register with Azure AD
-==================================
+# Exercise 1: Register with Azure AD
 
-Task 1: Register Application and Create Application Key
--------------------------------------------------------
+## Task 1: Register Application and Create Application Key
 
 1.  Navigate to <https://portal.azure.com> and continue to the website
 
@@ -111,10 +67,10 @@ Task 1: Register Application and Create Application Key
     be two types of permissions (Delegated and Application). Click each and
     select all the permissions. Click **Add permissions**
 
-![Request API permissions](Images/Lab6bEx1Task1Step11.png)
+    ![Request API permissions](Images/Lab6bEx1Task1Step11.png)
 
 
-![Under "Request API permissions" select types AX, CustomService, and Odata, and select the boxes under each](Images/Lab6bEx1Task1Step11b.png)
+    ![Under "Request API permissions" select types AX, CustomService, and Odata, and select the boxes under each](Images/Lab6bEx1Task1Step11b.png)
 
 12. The next step is to add the key, for which you need to go back to the Manage
     panel and select **Certificates & secrets**. Click the button **New client
@@ -122,20 +78,18 @@ Task 1: Register Application and Create Application Key
     leave it blank. You are just naming this key set, select the **Duration**
     and click **Add**
 
-![Add a client secret](Images/Lab6bEx1Task1Step12.png)
+    ![Add a client secret](Images/Lab6bEx1Task1Step12.png)
 
 13. Your new Key will be created under Client secrets. Copy the **Key Value**
     and save it; you will need this key in future labs. Should you lose it, you
     can always come back here and create a new one.
 
-Exercise 2: Install and Configure Recurring Data Export/Import Scheduler
-========================================================================
+# Exercise 2: Install and Configure Recurring Data Export/Import Scheduler
 
 In this exercise, you will configure Recurring Integration Scheduler and make it
 compatible to work with the Data Management module of Dynamics 365.
 
-Task 1: Install Recurring Integration Scheduler
------------------------------------------------
+## Task 1: Install Recurring Integration Scheduler
 
 1.  Install Recurring.Integrations.Scheduler.Setup.exe from your VM, or go to
     <https://github.com/Microsoft/Recurring-Integrations-Scheduler/releases> and
@@ -152,15 +106,14 @@ Task 1: Install Recurring Integration Scheduler
 
 6.  Recurring Integrations Scheduler should be installed in the Start Menu
 
-![Recurring Integrations Scheduler](Images/Lab6bEx2Task1Step6.png)
+    ![Recurring Integrations Scheduler](Images/Lab6bEx2Task1Step6.png)
 
 
-Task 2: Configure Recurring Integration Scheduler
--------------------------------------------------
+## Task 2: Configure Recurring Integration Scheduler
 
 1.  Open **Recurring integrations scheduler** and select **Parameters**
 
-![Recurring Integrations Scheduler](Images/Lab6bEx2Task2Step1.png) 
+    ![Recurring Integrations Scheduler](Images/Lab6bEx2Task2Step1.png) 
 
 2.  In the Parameters form, add the **instance** details
 
@@ -173,7 +126,7 @@ Task 2: Configure Recurring Integration Scheduler
     4.  Tenant: This is your tenant. One way to find it is to mouseover your
         avatar in the top right of the Azure portal; it is labeled Domain
 
-![Edit instance](Images/Lab6bEx2Task2Step2.png)
+    ![Edit instance](Images/Lab6bEx2Task2Step2.png)
  
 
 3.  In the Parameters form, add **Azure Active Directory Application** details
@@ -186,13 +139,13 @@ Task 2: Configure Recurring Integration Scheduler
 
     4.  Tenant: Enter your tenant
 
-![Edit Azure AD applications](Images/Lab6bEx2Task2Step3.png)
+    ![Edit Azure AD applications](Images/Lab6bEx2Task2Step3.png)
 
 
 4.In the Parameters form, add new **Azure AD Application** with the Auth type **Service**, and add the Client Id and the Client secret that was saved before. 
 
 
-![Edit user](Images/Lab6bTask2Step4Service.png)
+   ![Edit user](Images/Lab6bTask2Step4Service.png)
 
 5.  Select the **Validate** button on the Parameter form under the **Dynamics
     365 for Finance and Operation instances** section. The Validate instance
@@ -200,25 +153,23 @@ Task 2: Configure Recurring Integration Scheduler
     **Validate** button. In the white text box **OK** should appear, or that the
     authentication was successful. Warnings about privileges are not an issue.
 
-![For "Validate instance settings," select service authentication and choose the AAD Client app from the drop down. Then select the Validate button.](Images/Lab6bEx2Task2Step5.png)
+    ![For "Validate instance settings," select service authentication and choose the AAD Client app from the drop down. Then select the Validate button.](Images/Lab6bEx2Task2Step5.png)
 
 
-Exercise 3: Configure Dynamics 365 Finance and Operations Apps for recurring integrations
-=========================================================================================
+# Exercise 3: Configure Dynamics 365 Finance and Operations Apps for recurring integrations
 
-Task 1: Set up Data Management 
--------------------------------
+## Task 1: Set up Data Management 
 
 1.  Go to **All workspaces \> Data management**.
 
 2.  Select **Export**. 
 
-![Data management \> Export](Images/Lab6bEx3Task1Step2.png)
+    ![Data management \> Export](Images/Lab6bEx3Task1Step2.png)
 
 Setup the export definition by clicking the **Export**
     button
 
-![Data management \> Export](Images/Lab6bEx3Task1Step2b.png)
+   ![Data management \> Export](Images/Lab6bEx3Task1Step2b.png)
 
 3.  Enter **Customer Recurring job** as Group name.
 
@@ -236,7 +187,7 @@ Setup the export definition by clicking the **Export**
 
     6.  Select fields: All fields
 
-![Entity name: Customers V3 Target data format: CSV Use sample file: No Skip Staging: Yes Default refresh type: Full push only Select fields: All fields](Images/Lab6bEx3Task1Step4.png)
+    ![Entity name: Customers V3 Target data format: CSV Use sample file: No Skip Staging: Yes Default refresh type: Full push only Select fields: All fields](Images/Lab6bEx3Task1Step4.png)
 
 5.  Click **Add** button and **Save** the export job.
 
@@ -251,17 +202,16 @@ Setup the export definition by clicking the **Export**
     The application ID entered on this form is the client ID of the Azure AD
     Application.
 
-![Create recurring data job](Images/Lab6bEx3Task1Step7.png)
+    ![Create recurring data job](Images/Lab6bEx3Task1Step7.png)
 
    1.  Set up the recurrence as follows: Recurrence pattern: Minutes, repeat
         after/count/1
 
-![Start date: enter one Start time: Enter or default Time Zone: Enter or default No end date Recurrence Pattern: Minutes Repeat after count: 1](Images/Lab6bEx3Task1Step7.png)
+   ![Start date: enter one Start time: Enter or default Time Zone: Enter or default No end date Recurrence Pattern: Minutes Repeat after count: 1](Images/Lab6bEx3Task1Step7.png)
 
 8.  Finally, press **Ok** to create the recurring job.
 
- Task 2: Setup Recurring Integration Client
--------------------------------------------
+## Task 2: Setup Recurring Integration Client
 
 1.  Open **Recurring Integration Client**
 
@@ -273,7 +223,7 @@ Setup the export definition by clicking the **Export**
 
     3.  Scheduler: RecurringIntegrationsScheduler
 
-![Hostname: localhost Port: 555 Scheduler: RecurringIntegrationsScheduler ](Images/Lab6bEx3Task2Step2.png)
+    ![Hostname: localhost Port: 555 Scheduler: RecurringIntegrationsScheduler ](Images/Lab6bEx3Task2Step2.png)
 
 3.  Once connected, select **Parameters**
 
@@ -285,7 +235,7 @@ Setup the export definition by clicking the **Export**
 
     3.  Data job type: Download
 
-![Friendly name: Customers import Activity ID: enter Data job type: Download](Images/Lab6bEx3Task2Step4.png)
+    ![Friendly name: Customers import Activity ID: enter Data job type: Download](Images/Lab6bEx3Task2Step4.png)
 
 Note: The activity ID is the activity ID of the recurring integration
 data job that we created in D365fO.
@@ -298,8 +248,7 @@ data job that we created in D365fO.
    ![Download folder: \<enter one\> Errors folder: \<enter one\> Data project: CustRecurring Legal entity: USMF Status check interval (sec): 300 ](Images/Lab6bEx3Task2Step5.png)
 
 
-Task 3: Set up AAD Parameter in Dynamics 365 Finance and Operations Apps
-------------------------------------------------------------------------
+## Task 3: Set up AAD Parameter in Dynamics 365 Finance and Operations Apps
 
 1.  Go to **System Administration \> Setup \> Azure Active Directory
     Application**
@@ -313,8 +262,7 @@ Task 3: Set up AAD Parameter in Dynamics 365 Finance and Operations Apps
 Now you would be able to validate that the files that are generated are
 downloaded into the local folder.
 
-Check Output
-============
+## Check Output
 
 In the folder, specified in the Recurring Integration Scheduler tool, you will
 find the customer’s data is getting exported based on the defined interval.
