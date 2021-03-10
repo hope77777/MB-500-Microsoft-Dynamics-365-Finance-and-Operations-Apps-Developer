@@ -1,36 +1,8 @@
----
-lab:
-    title: 'Exercise 01: Metadata extension and development'
-    module: 'Module 04: AOT elements'
----
+# MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer**
 
-**MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer**
+## Lab 4 – Metadata Extension & Development**
 
-**Lab 4 – Metadata Extension & Development**
-
-Change Record
-=============
-
-| Version | Date        | Change                                                           |
-|---------|-------------|------------------------------------------------------------------|
-| 1.0     | 10 Jan 2020 | Initial release                                                  |
-| 1.01    | 22 Jan 2021 | Remove table of contents; update branding; remove LCS references |
-
-Lab Environment
-===============
-
-In order to run this lab, you will need:
-
--   An all-in-one demo data VM with
-
-    -   Visual Studio installed, and a Visual Studio subscription
-
-    -   A browser to run the user interface
-
-    -   Lab 3 – Data Structure Development completed
-
-Lab Overview
-============
+### Lab Overview
 
 -   Dependency: Lab 3 – Data Structure Development should be completed
 
@@ -38,8 +10,7 @@ Lab Overview
 
 **Estimated time to complete this lab: 30+ minutes**
 
-Scenario
-========
+### Scenario
 
 In this lab, we will develop/extend some forms, menu items and menus for which
 the Data Models were prepared in Lab 3 – Data Structure Development.
@@ -61,10 +32,9 @@ not all cities in the LogisticsAddressCity table will have an Airport Code.
 New field “Customer Tier” is added in the Customer form. Customer Flying Details
 is also added as a new tab in the detail sheet of the Customer form.
 
-Exercise 1: Add new Forms
--------------------------
+# Exercise 1: Add new Forms
 
-### Task 1: Form: Miles wise Tier Range
+## Task 1: Form: Miles wise Tier Range
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -110,7 +80,7 @@ Exercise 1: Add new Forms
 
         3.  ToMiles
 
-### Task 2: Display Menu Item: Mile wise Tier Range
+## Task 2: Display Menu Item: Mile wise Tier Range
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -126,7 +96,7 @@ Exercise 1: Add new Forms
 
     3.  Label: *Miles wise Tier Range*
 
-### Task 3: Form: Customer Fly Details
+## Task 3: Form: Customer Fly Details
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -215,7 +185,7 @@ Exercise 1: Add new Forms
     5.  For the field DDTCustFlyDetails_FlyingMiles, change the property Skip to
         Yes
 
-### Task 4: Display Menu Item: Customer Fly Details Form Part
+## Task 4: Display Menu Item: Customer Fly Details Form Part
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -233,10 +203,9 @@ Exercise 1: Add new Forms
 
 Save all.
 
-Exercise 2: Extend Standard Form
---------------------------------
+# Exercise 2: Extend Standard Form
 
-### Task 1: Form Extension: LogisticsAddressSetup
+## Task 1: Form Extension: LogisticsAddressSetup
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -260,7 +229,7 @@ Exercise 2: Extend Standard Form
 
 7.  Drag Field Group DDTAirportCode and drop at the above location at the end
 
-### Task 2: Form Extension: CustTable
+## Task 2: Form Extension: CustTable
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -309,7 +278,7 @@ Exercise 2: Extend Standard Form
 
     5.  TargetDataField: CustAccount
 
-### Task 3: Menu Extension: AccountsReceivable
+## Task 3: Menu Extension: AccountsReceivable
 
 1.  Open DynamicsDevProject in Solution Explorer
 
@@ -324,23 +293,22 @@ Exercise 2: Extend Standard Form
 5.  Open AccountsReceivable.DynamicsDevTraining in the designer to drag the
     display Menu item DDTCustTierDisplay and drop it under **Setup** submenu
 
-### Task 4: Finalize
+## Task 4: Finalize
 
 1.  Build solution.
 
-Check Output
-------------
+## Check Output
 
 1.  In a browser, in the USMF entity, open **Modules \> Accounts Receivable \>
     Setup \> Miles wise Tier Range**
 
     1.  Add two records:
-
-| Customer Tier | From Mile | To Mile |
-|---------------|-----------|---------|
-| None          | 0         | 100     |
-| Silver        | 101       | 100000  |
-
+    
+    | Customer Tier | From Mile | To Mile |
+    |---------------|-----------|---------|
+    | None          | 0         | 100     |
+    | Silver        | 101       | 100000  |
+    
 2.  Open **Organization Administration \> Global Address Book \> Addresses \>
     Address setup**
 
@@ -351,22 +319,22 @@ Check Output
     3.  You should find a new field Airport Code in the right pane
 
     4.  Add the following values in the Airport Code field:
-
-| City      | Airport Code |
-|-----------|--------------|
-| Hyderabad | HYD          |
-| Delhi     | DEL          |
-| Bangalore | BLR          |
-| Mumbai    | BOM          |
-| Chennai   | MAS          |
+    
+    | City      | Airport Code |
+    |-----------|--------------|
+    | Hyderabad | HYD          |
+    | Delhi     | DEL          |
+    | Bangalore | BLR          |
+    | Mumbai    | BOM          |
+    | Chennai   | MAS          |
 
 3.  Open **Accounts Receivable \> Customers \> All Customers**
 
     1.  Open Customer DE-001 followed by **Flying Details** fast tab
 
     2.  Please add the following data:
-
-| Counter | Flying Date | From City | Fly To | Flying Miles |
-|---------|-------------|-----------|--------|--------------|
-| 1       | 9/1/2019    | DEL       | BOM    | 200          |
-| 2       | 9/2/2019    | BOM       | DEL    | 200          |
+    
+    | Counter | Flying Date | From City | Fly To | Flying Miles |
+    |---------|-------------|-----------|--------|--------------|
+    | 1       | 9/1/2019    | DEL       | BOM    | 200          |
+    | 2       | 9/2/2019    | BOM       | DEL    | 200          |
