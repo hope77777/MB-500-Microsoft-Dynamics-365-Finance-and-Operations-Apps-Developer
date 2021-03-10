@@ -1,37 +1,8 @@
----
-lab:
-    title: 'Exercise 01: Data export/import using data entity'
-    module: 'Module 06: Data migration'
----
+# MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer
 
-**MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer**
+## Lab 6a - Data Export/Import using Data Entity
 
-**Lab 6a - Data Export/Import using Data Entity**
-
-Change Record
-=============
-
-| Version | Date        | Change                                                           |
-|---------|-------------|------------------------------------------------------------------|
-| 1.0     | 10 Jan 2020 | Initial release                                                  |
-| 1.01    | 22 Jan 2021 | Remove table of contents; update branding; remove LCS references |
-| 1.02    | 29 Jan 2021 | Restored images |
-
-Lab Environment
-===============
-
-In order to run this lab, you will need:
-
--   An all-in-one demo data VM with
-
-    -   Visual Studio installed, and a Visual Studio subscription
-
-    -   A browser to run the user interface
-
-    -   Lab 5 – Code Extension & Development completed
-
-Lab Overview
-============
+### Lab Overview
 
 -   Dependency: Lab 5 – Code Extension & Development should be completed
 
@@ -42,8 +13,7 @@ Lab Overview
 
 **Estimated time to complete this lab: 30+ minutes**
 
-Scenario 1
-==========
+### Scenario 1
 
 -   In the DynamicsDevTraining package you need to create a new Data Entity
     DDTCustFlyDetailsEntity with the table DDTCustFlyDetails
@@ -51,8 +21,7 @@ Scenario 1
 -   Set up Data Management to import the Customer Flying Details from the csv
     file CustFlyDetails.csv
 
-Scenario 2
-==========
+### Scenario 2
 
 -   The next exercise is for package MyLabAirlines. In this exercise, Excel
     won’t have the field FlyingMiles. During the import process the Flying Miles
@@ -64,11 +33,9 @@ Scenario 2
 -   Finally, set up Data Management again to import the Customer Flying Details
     from the csv file CustFlyDetails-nomiles.csv
 
-Exercise 1: Create New Entity for import
-========================================
+# Exercise 1: Create New Entity for import
 
-Task 1: New Data Entity: DDTCustFlyDetailsEntity
-------------------------------------------------
+## Task 1: New Data Entity: DDTCustFlyDetailsEntity
 
 1.  Open DynamicsDevSolution in Solution Explorer
 
@@ -156,8 +123,7 @@ Task 1: New Data Entity: DDTCustFlyDetailsEntity
 
 12. Save and Rebuild the project
 
-Task 2: Data Management Setup
------------------------------
+## Task 2: Data Management Setup
 
 1.  From the Dynamics 365 Finance and Operations dashboard, open the **Data
     Management** workspace
@@ -211,11 +177,9 @@ Task 2: Data Management Setup
 
 11. Save and select **Import** button
 
-Exercise 2: Import Customer data updating miles
-===============================================
+# Exercise 2: Import Customer data updating miles
 
-Task 1: Chain of Command: DDTCustFlyDetailsEntity \> mapEntityToDataSource method
----------------------------------------------------------------------------------
+## Task 1: Chain of Command: DDTCustFlyDetailsEntity \> mapEntityToDataSource method
 
 1.  Open MyLabAirlines in Solution Explorer
 
@@ -228,33 +192,32 @@ Task 1: Chain of Command: DDTCustFlyDetailsEntity \> mapEntityToDataSource metho
 5.  Write the following code to create a chain of command for Data Entity
     DDTCustFlyDetailsEntity:
 
-<pre><code>
-[ExtensionOf(tableStr(DDTCustFlyDetailsEntity))]
-final class MLACustFlyDetailsEntity_Extension
-{
-}
-</code></pre>
+    <pre><code>
+    [ExtensionOf(tableStr(DDTCustFlyDetailsEntity))]
+    final class MLACustFlyDetailsEntity_Extension
+    {
+    }
+    </code></pre>
 
 6.  Write the following code in that class:
-
-<pre><code>
-public void mapEntityToDataSource(DataEntityRuntimeContext _entityCtx, DataEntityDataSourceRuntimeContext _dataSourceCtx)
-    {
-        next mapEntityToDataSource(_entityCtx, _dataSourceCtx);
-
-        if (_dataSourceCtx.name() == DataEntityDataSourceStr(DDTCustFlyDetailsEntity, DDTCustFlyDetails))
+    
+    <pre><code>
+    public void mapEntityToDataSource(DataEntityRuntimeContext _entityCtx, DataEntityDataSourceRuntimeContext _dataSourceCtx)
         {
-            DDTCustFlyDetails   dsCustFlyDetails = _dataSourceCtx.getBuffer();
-DDTCustFlyDetailsEntity deCustFlyDetailsEntity = _entityCtx.getEntityRecord();
-            dsCustFlyDetails.flyingMiles = MLAAirportMilesChart::getMiles(deCustFlyDetailsEntity.AirportFrom_AirportCode, deCustFlyDetailsEntity.AirportTo_AirportCode);
-
+            next mapEntityToDataSource(_entityCtx, _dataSourceCtx);
+    
+            if (_dataSourceCtx.name() == DataEntityDataSourceStr(DDTCustFlyDetailsEntity, DDTCustFlyDetails))
+            {
+                DDTCustFlyDetails   dsCustFlyDetails = _dataSourceCtx.getBuffer();
+    DDTCustFlyDetailsEntity deCustFlyDetailsEntity = _entityCtx.getEntityRecord();
+                dsCustFlyDetails.flyingMiles = MLAAirportMilesChart::getMiles(deCustFlyDetailsEntity.AirportFrom_AirportCode, deCustFlyDetailsEntity.AirportTo_AirportCode);
+    
+            }
         }
-    }
-</code></pre>
+    </code></pre>
+    
 
-
-Task 2: Data Management Setup
------------------------------
+## Task 2: Data Management Setup
 
 1.  From the Dynamics 365 Finance and Operations dashboard, open the **Data
     Management workspace**
@@ -282,18 +245,17 @@ Task 2: Data Management Setup
 5.  Add the column FlyingMiles in the Staging Table in Mapping details and check
     the Auto default check box
 
-![The new line should have:
-Auto default: checked
-Source Field: Default
-Staging field: FlyingMiles](Images/Lab6aEx2Task1.png)
+    ![The new line should have:
+    Auto default: checked
+    Source Field: Default
+    Staging field: FlyingMiles](Images/Lab6aEx2Task1.png)
 
 6.  Select the **Default value** button and enter some temporary number (e.g.
     99) to fill in the staging table
 
 7.  Go back to the previous screen, save and select **import**
 
-Check Output
-------------
+## Check Output
 
 -   Follow the steps mentioned; you should be able to see the new imported
     records in the Flying Details tab of the Customer form.
