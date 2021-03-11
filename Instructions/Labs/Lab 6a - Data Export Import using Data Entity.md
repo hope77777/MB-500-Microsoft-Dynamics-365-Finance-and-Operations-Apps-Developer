@@ -192,16 +192,16 @@
 5.  Write the following code to create a chain of command for Data Entity
     DDTCustFlyDetailsEntity:
 
-    <pre><code>
+  ```html
     [ExtensionOf(tableStr(DDTCustFlyDetailsEntity))]
     final class MLACustFlyDetailsEntity_Extension
     {
     }
-    </code></pre>
+  ```
 
 6.  Write the following code in that class:
     
-    <pre><code>
+  ```html
     public void mapEntityToDataSource(DataEntityRuntimeContext _entityCtx, DataEntityDataSourceRuntimeContext _dataSourceCtx)
         {
             next mapEntityToDataSource(_entityCtx, _dataSourceCtx);
@@ -214,7 +214,7 @@
     
             }
         }
-    </code></pre>
+  ```
     
 
 ## Task 2: Data Management Setup
