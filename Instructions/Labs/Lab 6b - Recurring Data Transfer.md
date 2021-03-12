@@ -142,7 +142,7 @@ compatible to work with the Data Management module of Dynamics 365.
     ![Edit Azure AD applications](Images/Lab6bEx2Task2Step3.png)
 
 
-4.In the Parameters form, add new **Azure AD Application** with the Auth type **Service**, and add the Client Id and the Client secret that was saved before. 
+4.  In the Parameters form, add new **Azure AD Application** with the Auth type **Service**, and add the Client Id and the Client secret that was saved before. 
 
 
    ![Edit user](Images/Lab6bTask2Step4Service.png)
@@ -166,7 +166,7 @@ compatible to work with the Data Management module of Dynamics 365.
 
     ![Data management \> Export](Images/Lab6bEx3Task1Step2.png)
 
-Setup the export definition by clicking the **Export**
+    Setup the export definition by clicking the **Export**
     button
 
    ![Data management \> Export](Images/Lab6bEx3Task1Step2b.png)
