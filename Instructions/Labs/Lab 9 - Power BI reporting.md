@@ -1,45 +1,8 @@
----
-lab:
-    title: 'Exercise 01: Power BI reporting'
-    module: 'Module 09: Reporting'
----
+# MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer
 
-**MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer**
+## Lab 9 - Power BI Reporting
 
-**Lab 9 - Power BI Reporting**
-
-Change Record
-=============
-
-| Version | Date        | Change                                                           |
-|---------|-------------|------------------------------------------------------------------|
-| 1.0     | 10 Jan 2020 | Initial release                                                  |
-| 1.01    | 22 Jan 2021 | Remove table of contents; update branding; remove LCS references |
-| 1.02    | 29 Jan 2021 | Restored images |
-
-Lab Environment
-===============
-
-In order to run this lab, you will need:
-
--   An all-in-one demo data VM with
-
-    -   A browser to run the user interface
-
-    -   Lab 5 – Code Extension & Development completed
-
--   Power BI Desktop, which is downloadable at
-    <https://www.microsoft.com/en-us/download/details.aspx?id=58494> as
-    PBIDesktopSsetup_x64.exe. If not provided on the VM, you may find it at
-    <http://aka.ms/mb500labresources>
-
--   Note that in order to run Task 2, you will need to be admin in your tenant.
-    If you are not, you can still create a PowerBI in Task 1, but cannot bring
-    it back to Dynamics in Task 2. One way around this is to log into
-    PowerBI.com using a Live ID, and sign up for a trial.
-
-Lab Overview
-============
+### Lab Overview
 
 -   Dependency: Lab 5 – Code Extension & Development should be completed
 
@@ -52,18 +15,15 @@ Lab Overview
 
 **Estimated time to complete this lab: 45+ minutes**
 
-Scenario
-========
+### Scenario
 
 We need to create a report in Power BI that will show a pie chart. The pie chart
 will contain Sector with flight count. This report should be shown in the Power
 BI dashboard as well as the Dynamics 365 Finance and Operations workspace.
 
-Exercise: Power BI reporting
-============================
+# Exercise: Power BI reporting
 
-Task 1: Power BI Desktop
-------------------------
+## Task 1: Power BI Desktop
 
 1.  Download Power BI Desktop at
     <https://www.microsoft.com/en-us/download/details.aspx?id=58494>
@@ -101,7 +61,7 @@ Task 1: Power BI Desktop
 
    Sector = [AirportFrom_AirportCode]&"-"&[AirportTo_AirportCode]
 
-![Formula above](Images/Lab9ExTask1Step10.png)
+   ![Formula above](Images/Lab9ExTask1Step10.png)
 
 11.  From the list of Visualizations, select “Pie Chart”
 
@@ -113,7 +73,7 @@ Task 1: Power BI Desktop
 14.  You should have a pie chart of the different sectors, which shows count and
     percentage.
 
-![A pie chart showing the different airport sectors](Images/Lab9ExTask1Step14.png)
+   ![A pie chart showing the different airport sectors](Images/Lab9ExTask1Step14.png)
 
 15.  **Save** the visual as a pbix file
 
@@ -126,8 +86,7 @@ Task 1: Power BI Desktop
 19.  Add that in a new dashboard by clicking on the pin (third button from top
     right of the visuals)
 
-Task 2: Power BI on Dynamics 365 Finance and Operations apps
-------------------------------------------------------------
+## Task 2: Power BI on Dynamics 365 Finance and Operations apps
 
 1.  Open <https://dev.powerbi.com/apps> to register the application
 
@@ -182,8 +141,7 @@ Task 2: Power BI on Dynamics 365 Finance and Operations apps
 
 8.  The Power BI visual should be published in your new workspace
 
-Check Output
-============
+## Check Output
 
 Open <https://powerbi.microsoft.com>. The pie chart should be available under
 the Dashboard menu.
