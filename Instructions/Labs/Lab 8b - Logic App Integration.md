@@ -1,43 +1,8 @@
----
-lab:
-    title: 'Exercise 02: Logic App integration'
-    module: 'Module 08: Integration'
----
+# MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer
 
-**MB-500: Microsoft Dynamics 365: Finance and Operations Apps Developer**
+## Lab 8b - Logic App Integration
 
-**Lab 8b - Logic App Integration**
-
-# **Do not use after 31 Mar 2021**
-
-Change Record
-=============
-
-| Version | Date        | Change                                                           |
-|---------|-------------|------------------------------------------------------------------|
-| 1.0     | 10 Jan 2020 | Initial release                                                  |
-| 1.01    | 22 Jan 2021 | Remove table of contents; update branding; remove LCS references |
-| 1.02    | 29 Jan 2021 | Restored images |
-| 1.03    | 04 Mar 2021 | Lab must timebomb, as portal.azure.com does not support Internet Explorer 11 after 31 Mar |
-
-Lab Environment
-===============
-
-In order to run this lab, you will need:
-
--   An all-in-one demo data VM with
-
-    -   Visual Studio installed, and a Visual Studio subscription
-
-    -   Lab 1 – Development Environment Configuration completed
-
--   An email account
-
--   Access to the Azure portal at <https://portal.azure.com> and an Azure
-    account, with an Azure pass which is provided to learners
-
-Lab Overview
-============
+### Lab Overview
 
 -   Dependency: Lab 1 – Development Environment Configuration should be
     completed
@@ -48,8 +13,7 @@ Lab Overview
 
 **Estimated time to complete this lab: 40+ minutes**
 
-Scenario
-========
+### Scenario
 
 -   You need to create a Service Bus in the Azure portal using the Azure pass
     provided to you
@@ -65,15 +29,13 @@ Scenario
 
 -   Mail will go to specified recipient from the mail id configured in Logic App
 
-Exercise 1: Sign up for an Azure Subscription
-=============================================
+# Exercise 1: Sign up for an Azure Subscription
 
 In this exercise, you will sign up for an Azure subscription to use during the
 course. Your instructor will inform you if there are pass codes available – if
 not please use the standard trial process.
 
-Task 1: Sign up for Azure with a Pass Code
-------------------------------------------
+## Task 1: Sign up for Azure with a Pass Code
 
 1.  *If you have an Azure Pass code* from your instructor, log in to your
     Dynamics 365 trial organization and then navigate to
@@ -85,11 +47,9 @@ Task 1: Sign up for Azure with a Pass Code
 
 3.  Enter the Promo code supplied to you
 
-Exercise 2: Creation of Customer data using Logic App
-=====================================================
+# Exercise 2: Creation of Customer data using Logic App
 
-Task 1: Create a new Service Bus
---------------------------------
+## Task 1: Create a new Service Bus
 
 1.  Go to your Azure Portal, select **New**, select **Service Bus** and press
     Enter. If you have the new portal, under Azure services, select **More
@@ -104,8 +64,7 @@ Task 1: Create a new Service Bus
 3.  Create a new **Queue**, named “Customer”. These options will vary widely
     depending on the Azure Portal; do not worry if they are different.
 
-Task 2: Create a C\# class to populate message in Service Bus
--------------------------------------------------------------
+## Task 2: Create a C\# class to populate message in Service Bus
 
 1.  Open Visual Studio
 
@@ -115,105 +74,104 @@ Task 2: Create a C\# class to populate message in Service Bus
 3.  Under your project right select **References** node and select **Manage
     NuGet Packages**
 
-![Manage NuGet Packages](Images/Lab8bEx2Task2Step3.png)
+    ![Manage NuGet Packages](Images/Lab8bEx2Task2Step3.png)
 
 4.  Select **Browse** and add these two NuGet Packages in your reference:
     Newtonsoft.Json and select version v11.0.1 and WindowsAzure.ServiceBus
     v4.1.7. It’s important to use these versions.
 
-![Newtonsoft.json](Images/Lab8bEx2Task2Step4.png)
+    ![Newtonsoft.json](Images/Lab8bEx2Task2Step4.png)
 
 5.  To create a Data Contract for the Customer Entity, add a new C\# class
     JsonBody.cs
 
-6.  Add the following code in the class
-
-<pre><code>using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Runtime.Serialization;
-using Newtonsoft.Json;
-
-namespace PopulateCustomer
-{
-    [DataContract]
-    public class JsonBody
+6.  Add the following code in the class:
+  ```html
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Runtime.Serialization;
+    using Newtonsoft.Json;
+    
+    namespace PopulateCustomer
     {
-        [DataMember]
-        public string AddressCountryRegionId { get; set; }
-        [DataMember]
-        public string CustomerAccount { get; set; }
-        [DataMember]
-        public string CustomerGroupId { get; set; }
-        [DataMember]
-        public string Name { get; set; }
-        [DataMember]
-        public string SalesCurrencyCode { get; set; }
-        [DataMember]
-        public string dataAreaId { get; set; }
+        [DataContract]
+        public class JsonBody
+        {
+            [DataMember]
+            public string AddressCountryRegionId { get; set; }
+            [DataMember]
+            public string CustomerAccount { get; set; }
+            [DataMember]
+            public string CustomerGroupId { get; set; }
+            [DataMember]
+            public string Name { get; set; }
+            [DataMember]
+            public string SalesCurrencyCode { get; set; }
+            [DataMember]
+            public string dataAreaId { get; set; }
+        }
     }
-}
-</code></pre>
+  ```
 
 7.  Add or locate a C\# class named Program that will create the json message
     and send the message to the service bus
 
 8.  Add the following code in the new runnable class. The connection string will
-    be derived shortly.
-
-<pre><code>using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.ServiceBus.Messaging;
-using Newtonsoft.Json;
-using System.Runtime.Serialization.Json;
-using System.IO;
-
-namespace PopulateCustomer
-{
-    class Program
+    be derived shortly:
+  ```html
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using Microsoft.ServiceBus.Messaging;
+    using Newtonsoft.Json;
+    using System.Runtime.Serialization.Json;
+    using System.IO;
+    
+    namespace PopulateCustomer
     {
-        static void Main(string[] args)
+        class Program
         {
-            PopulateCustomer.JsonBody customer = new JsonBody();
-            customer.CustomerAccount = "Testxxxx";
-            customer.CustomerGroupId = "10";
-            customer.AddressCountryRegionId = "USA";
-            customer.SalesCurrencyCode = "USD";
-            customer.dataAreaId = "USMF";
-            customer.Name = "Test xxxx";
-            string output = JsonConvert.SerializeObject(customer);
-            var connectionString = <Add the connection string of your Service Bus>;
-            var queueName = "customer";
-            var client = QueueClient.CreateFromConnectionString(connectionString, queueName);
-            var payloadStream = new MemoryStream(Encoding.UTF8.GetBytes(output));
-            var message = new BrokeredMessage(payloadStream, true);
-            client.Send(message);
+            static void Main(string[] args)
+            {
+                PopulateCustomer.JsonBody customer = new JsonBody();
+                customer.CustomerAccount = "Testxxxx";
+                customer.CustomerGroupId = "10";
+                customer.AddressCountryRegionId = "USA";
+                customer.SalesCurrencyCode = "USD";
+                customer.dataAreaId = "USMF";
+                customer.Name = "Test xxxx";
+                string output = JsonConvert.SerializeObject(customer);
+                var connectionString = <Add the connection string of your Service Bus>;
+                var queueName = "customer";
+                var client = QueueClient.CreateFromConnectionString(connectionString, queueName);
+                var payloadStream = new MemoryStream(Encoding.UTF8.GetBytes(output));
+                var message = new BrokeredMessage(payloadStream, true);
+                client.Send(message);
+            }
         }
     }
-}
-</code></pre>
+  ```
 
 9.  In the Azure portal, select **Service Bus \> Settings \> Shared access
     policies**
 
-![Shared access policies](Images/Lab8bEx2Task2Step9.png) 
+    ![Shared access policies](Images/Lab8bEx2Task2Step9.png) 
 
 10.  Under Policy, select **RootManageSharedAccessKey**. You will find the
     Primary Connection String. Copy it and paste it in the code within quotes
 
-![Policy: RootManageSharedAccessKey](Images/Lab8bEx2Task2Step10.png)
+   ![Policy: RootManageSharedAccessKey](Images/Lab8bEx2Task2Step10.png)
 
 11.  Enter the Queue name in the code
 
 12.  **Save** and **Build** the C\# code
 
-Task 3: Create a Logic App
---------------------------
+## Task 3: Create a Logic App
 
 1.  Log in to Azure Portal and create a new Logic App:
 
@@ -271,35 +229,36 @@ Task 3: Create a Logic App
     the json schema and get pasted in the Schema field of the previous diagram,
     then select **Done**
 
-![Code below](Images/Lab8bEx2Task3Step8.png)
+    ![Code below](Images/Lab8bEx2Task3Step8.png)
 
    The schema should look like this: 
-<pre><code>
-{
-   "type": "object",
-   "properties": {
-   "AddressCountryRegionId": {
-   "type": "string"
-   },
-   "CustomerAccount": {
-   "type": "string"
-   },
-   "Name": {
-   "type": "string"
-   },
-   "SalesCurrencyCode": {
-   "type": "string"
-   },
-   "dataAreaId": {
-   "type": "string"
-   },
-   "CustomerGroupId": {
-   "type": "string"
-   }
-   }
-</code></pre>
+   
+  ```html
+    {
+       "type": "object",
+       "properties": {
+       "AddressCountryRegionId": {
+       "type": "string"
+       },
+       "CustomerAccount": {
+       "type": "string"
+       },
+       "Name": {
+       "type": "string"
+       },
+       "SalesCurrencyCode": {
+       "type": "string"
+       },
+       "dataAreaId": {
+       "type": "string"
+       },
+       "CustomerGroupId": {
+       "type": "string"
+       }
+       }
+  ```
 
-![code](Images/Lab8bEx2Task3Step8b.png)
+   ![code](Images/Lab8bEx2Task3Step8b.png)
 
 9.  Select **+ New step** button below and select **Add an Action** if available
 
@@ -307,7 +266,7 @@ Task 3: Create a Logic App
     **Dynamics 365 for Fin & Ops Create record**, depending on your version.
     Make sure it is Operations or Ops. You do not want just “Dynamics 365”
 
-![Dynamics 365 for Operations - Create record](Images/Lab8bEx2Task3Step10.png)
+   ![Dynamics 365 for Operations - Create record](Images/Lab8bEx2Task3Step10.png)
 
 11.  Populate Create Record Action as:
 
@@ -325,11 +284,11 @@ Task 3: Create a Logic App
 
   -  Company: dataAreaId
 
-![Options above](Images/Lab8bEx2Task3Step11.png)
+   ![Options above](Images/Lab8bEx2Task3Step11.png)
 
 12.  Optional: Select **New Step,** and select **Add an Action** if available
 
-![Add an action](Images/Lab8bEx2Task3Step12.png)
+   ![Add an action](Images/Lab8bEx2Task3Step12.png)
 
 13.  Optional: You can select [Office365 Outlook/Gmail] and select **send email**
 
@@ -337,11 +296,11 @@ Task 3: Create a Logic App
 
 14.  Optional: Specify To address, subject, body etc.
 
-![Send email 2](Images/Lab8bEx2Task3Step14.png)
+   ![Send email 2](Images/Lab8bEx2Task3Step14.png)
 
 15.  Select the **Code View** button
 
-![Code view](Images/Lab8bEx2Task3Step15.png)
+   ![Code view](Images/Lab8bEx2Task3Step15.png)
 
 16.  Find the following code
 
@@ -354,8 +313,7 @@ Task 3: Create a Logic App
 18. **Save** the Logic App. Run the VS class and when complete, run the Logic
     App.
 
-Check Output
-------------
+## Check Output
 
 -   A new record will be created in the Customer form in Dynamics 365 Finance
     and Operations – you can check this on the All Customers screen
