@@ -86,76 +86,76 @@ not please use the standard trial process.
     JsonBody.cs
 
 6.  Add the following code in the class:
-  ```html
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using System.Runtime.Serialization;
-    using Newtonsoft.Json;
-    
-    namespace PopulateCustomer
-    {
-        [DataContract]
-        public class JsonBody
-        {
-            [DataMember]
-            public string AddressCountryRegionId { get; set; }
-            [DataMember]
-            public string CustomerAccount { get; set; }
-            [DataMember]
-            public string CustomerGroupId { get; set; }
-            [DataMember]
-            public string Name { get; set; }
-            [DataMember]
-            public string SalesCurrencyCode { get; set; }
-            [DataMember]
-            public string dataAreaId { get; set; }
-        }
-    }
-  ```
+    ```html
+      using System;
+      using System.Collections.Generic;
+      using System.Linq;
+      using System.Text;
+      using System.Threading.Tasks;
+      using System.Runtime.Serialization;
+      using Newtonsoft.Json;
+      
+      namespace PopulateCustomer
+      {
+          [DataContract]
+          public class JsonBody
+          {
+              [DataMember]
+              public string AddressCountryRegionId { get; set; }
+              [DataMember]
+              public string CustomerAccount { get; set; }
+              [DataMember]
+              public string CustomerGroupId { get; set; }
+              [DataMember]
+              public string Name { get; set; }
+              [DataMember]
+              public string SalesCurrencyCode { get; set; }
+              [DataMember]
+              public string dataAreaId { get; set; }
+          }
+      }
+    ```
 
 7.  Add or locate a C\# class named Program that will create the json message
     and send the message to the service bus
 
 8.  Add the following code in the new runnable class. The connection string will
     be derived shortly:
-  ```html
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Microsoft.ServiceBus.Messaging;
-    using Newtonsoft.Json;
-    using System.Runtime.Serialization.Json;
-    using System.IO;
-    
-    namespace PopulateCustomer
-    {
-        class Program
-        {
-            static void Main(string[] args)
-            {
-                PopulateCustomer.JsonBody customer = new JsonBody();
-                customer.CustomerAccount = "Testxxxx";
-                customer.CustomerGroupId = "10";
-                customer.AddressCountryRegionId = "USA";
-                customer.SalesCurrencyCode = "USD";
-                customer.dataAreaId = "USMF";
-                customer.Name = "Test xxxx";
-                string output = JsonConvert.SerializeObject(customer);
-                var connectionString = <Add the connection string of your Service Bus>;
-                var queueName = "customer";
-                var client = QueueClient.CreateFromConnectionString(connectionString, queueName);
-                var payloadStream = new MemoryStream(Encoding.UTF8.GetBytes(output));
-                var message = new BrokeredMessage(payloadStream, true);
-                client.Send(message);
-            }
-        }
-    }
-  ```
+    ```html
+      using System;
+      using System.Collections.Generic;
+      using System.Linq;
+      using System.Text;
+      using System.Threading.Tasks;
+      using Microsoft.ServiceBus.Messaging;
+      using Newtonsoft.Json;
+      using System.Runtime.Serialization.Json;
+      using System.IO;
+      
+      namespace PopulateCustomer
+      {
+          class Program
+          {
+              static void Main(string[] args)
+              {
+                  PopulateCustomer.JsonBody customer = new JsonBody();
+                  customer.CustomerAccount = "Testxxxx";
+                  customer.CustomerGroupId = "10";
+                  customer.AddressCountryRegionId = "USA";
+                  customer.SalesCurrencyCode = "USD";
+                  customer.dataAreaId = "USMF";
+                  customer.Name = "Test xxxx";
+                  string output = JsonConvert.SerializeObject(customer);
+                  var connectionString = <Add the connection string of your Service Bus>;
+                  var queueName = "customer";
+                  var client = QueueClient.CreateFromConnectionString(connectionString, queueName);
+                  var payloadStream = new MemoryStream(Encoding.UTF8.GetBytes(output));
+                  var message = new BrokeredMessage(payloadStream, true);
+                  client.Send(message);
+              }
+          }
+      }
+    ```
 
 9.  In the Azure portal, select **Service Bus \> Settings \> Shared access
     policies**
@@ -206,11 +206,11 @@ not please use the standard trial process.
     ![When a message is received in a queue (auto-complete)](Images/Lab8bEx2Task3Step4.png)
 
     Note:
-
--   If you want to change the Service Bus, select **Change Connection**
-
--   If you want to change the frequency of data reading from service bus, select
-    **Edit – we recommend every 1 minute**
+      
+      -   If you want to change the Service Bus, select **Change Connection**
+      
+      -   If you want to change the frequency of data reading from service bus, select
+          **Edit – we recommend every 1 minute**
 
 5.  Select **+ New step** button below and select **Add an Action** if available
 
@@ -231,33 +231,33 @@ not please use the standard trial process.
 
     ![Code below](Images/Lab8bEx2Task3Step8.png)
 
-   The schema should look like this: 
-   
-  ```html
-    {
-       "type": "object",
-       "properties": {
-       "AddressCountryRegionId": {
-       "type": "string"
-       },
-       "CustomerAccount": {
-       "type": "string"
-       },
-       "Name": {
-       "type": "string"
-       },
-       "SalesCurrencyCode": {
-       "type": "string"
-       },
-       "dataAreaId": {
-       "type": "string"
-       },
-       "CustomerGroupId": {
-       "type": "string"
-       }
-       }
-  ```
-
+    The schema should look like this: 
+     
+    ```html
+      {
+         "type": "object",
+         "properties": {
+         "AddressCountryRegionId": {
+         "type": "string"
+         },
+         "CustomerAccount": {
+         "type": "string"
+         },
+         "Name": {
+         "type": "string"
+         },
+         "SalesCurrencyCode": {
+         "type": "string"
+         },
+         "dataAreaId": {
+         "type": "string"
+         },
+         "CustomerGroupId": {
+         "type": "string"
+         }
+         }
+    ```
+  
    ![code](Images/Lab8bEx2Task3Step8b.png)
 
 9.  Select **+ New step** button below and select **Add an Action** if available
@@ -269,21 +269,21 @@ not please use the standard trial process.
    ![Dynamics 365 for Operations - Create record](Images/Lab8bEx2Task3Step10.png)
 
 11.  Populate Create Record Action as:
-
-  - Instance: Select your instance from the drop down
-
-  -  Entity name: Select Customers (wait for the next fields to display)
-
-  -  Customer account: Position the cursor in the field, then the available fields will display on the right. Select CustomerAccount.
-
-   -  Name: Position the cursor in the field, then select Name.
-
-  -  Currency: SalesCurrencyCode.
-
-  -  Customer group: CustomerGroupId.
-
-  -  Company: dataAreaId
-
+ 
+   - Instance: Select your instance from the drop down
+ 
+   -  Entity name: Select Customers (wait for the next fields to display)
+ 
+   -  Customer account: Position the cursor in the field, then the available fields will display on the right. Select CustomerAccount.
+ 
+    -  Name: Position the cursor in the field, then select Name.
+ 
+   -  Currency: SalesCurrencyCode.
+ 
+   -  Customer group: CustomerGroupId.
+ 
+   -  Company: dataAreaId
+ 
    ![Options above](Images/Lab8bEx2Task3Step11.png)
 
 12.  Optional: Select **New Step,** and select **Add an Action** if available
