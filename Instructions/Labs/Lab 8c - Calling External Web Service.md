@@ -51,30 +51,30 @@
 9.  Add a new C\# class GoldData.cs
 
 10. Its code should be:
-  ```html
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using GoldRateProvider.GoldServiceRef;
-    using System.ServiceModel;
-    
-    namespace GoldRateProvider
-    {
-        public class GoldData
-        {
-            public static ArrayOfString getRate()
-            {
-                var binding = new System.ServiceModel.BasicHttpBinding();
-                var endpointAddress = new EndpointAddress("http://www.freewebservicesx.com/GetGoldPrice.asmx");
-                GetGoldPriceSoapClient client = new GetGoldPriceSoapClient(binding, endpointAddress);
-    
-                return client.GetCurrentGoldPrice("domaindynamicstravel@gmail.com", "pass@word");
-            }
-        }
-    }
-  ```
+    ```html
+      using System;
+      using System.Collections.Generic;
+      using System.Linq;
+      using System.Text;
+      using System.Threading.Tasks;
+      using GoldRateProvider.GoldServiceRef;
+      using System.ServiceModel;
+      
+      namespace GoldRateProvider
+      {
+          public class GoldData
+          {
+              public static ArrayOfString getRate()
+              {
+                  var binding = new System.ServiceModel.BasicHttpBinding();
+                  var endpointAddress = new EndpointAddress("http://www.freewebservicesx.com/GetGoldPrice.asmx");
+                  GetGoldPriceSoapClient client = new GetGoldPriceSoapClient(binding, endpointAddress);
+      
+                  return client.GetCurrentGoldPrice("domaindynamicstravel@gmail.com", "pass@word");
+              }
+          }
+      }
+    ```
 
 11. **Save** and **Build** the Project GoldDataProvider
 
@@ -103,10 +103,10 @@
 
 8.  Within the main method, add the following code:
 
-  ```html
-    System.String[] goldRate = GoldRateProvider.GoldData::getRate().ToArray();
-    info(goldRate.GetValue(0));
-  ```
+    ```html
+      System.String[] goldRate = GoldRateProvider.GoldData::getRate().ToArray();
+      info(goldRate.GetValue(0));
+    ```
 
 9.  Right click the project name in Solution Explorer and select **Set as
     Startup Object**
