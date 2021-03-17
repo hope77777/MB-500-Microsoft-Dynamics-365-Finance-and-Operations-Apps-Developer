@@ -1,5 +1,5 @@
 # Module:Any
-# Exercise 01: Business events'
+# Exercise 01: Business events
 
 ### Lab Overview
 
@@ -50,8 +50,7 @@
             LogisticsElectronicAddress logisticsElectronicAddress; 
             LogisticsElectronicAddressRole logisticsElectronicAddressRole; 
             LogisticsLocationRole logisticsLocationRole;
-            Email   emailValue;
-    
+            Email   emailValue;  
             while select DirPartyLocation
                 where dirPartyLocation.party == this.Party
             {
@@ -125,8 +124,7 @@
     [DataMember('CustAccount'), BusinessEventsDataMember("Customer Account")]
     public CustAccount parmCustAccount(CustAccount _custAccount = custAccount)
         {
-            custAccount = _custAccount;
-    
+            custAccount = _custAccount;    
             return custAccount;
         }
     ```
@@ -135,8 +133,7 @@
     [DataMember('CustEmail'), BusinessEventsDataMember("Customer Email")]
     public Email parmCustEmail(Email _custEmail = custEmail)
         {
-            custEmail = _custEmail;
-    
+            custEmail = _custEmail;    
             return custEmail;
         }
     ```
@@ -144,8 +141,7 @@
     [DataMember('FlyingDate'), BusinessEventsDataMember("Date of Flying")]
     public String10 parmFlyingDate(String10 _flyingDate = flyingDate)
         {
-            flyingDate = _flyingDate;
-    
+            flyingDate = _flyingDate;    
             return flyingDate;
         }
     ```
@@ -153,8 +149,7 @@
     [DataMember('FlyingFrom'), BusinessEventsDataMember("Flying From Airport")]
     public DDTAirportCode parmFlyingFrom(DDTAirportCode _flyingFrom = flyingFrom)
         {
-            flyingFrom = _flyingFrom;
-    
+            flyingFrom = _flyingFrom;    
             return flyingFrom;
         }
     ```
@@ -162,8 +157,7 @@
     [DataMember('FlyingTo'), BusinessEventsDataMember("Flying To Airport")]
     public DDTAirportCode parmFlyingTo(DDTAirportCode _flyingTo = flyingTo)
         {
-            flyingTo = _flyingTo;
-    
+            flyingTo = _flyingTo;    
             return flyingTo;
         }
     ```
@@ -171,8 +165,7 @@
     [DataMember('FlyingMiles'), BusinessEventsDataMember("Flying Miles")]
     public DDTFlyingMiles parmFlyingMiles(DDTFlyingMiles _flyingMiles = flyingMiles)
         {
-            flyingMiles = _flyingMiles;
-    
+            flyingMiles = _flyingMiles;    
             return flyingMiles;
         }
     ```
@@ -180,8 +173,7 @@
     [DataMember('LegalEntity'), BusinessEventsDataMember("Legal Entity")]
     public LegalEntityDataAreaId parmLegalEntity(LegalEntityDataAreaId _legalEntity = legalEntity)
         {
-            legalEntity = _legalEntity;
-    
+            legalEntity = _legalEntity;    
             return legalEntity;
         }
     ```
@@ -192,8 +184,7 @@
         public static MLAFlightDetailsPostedBusinessEventContract newFlightDetails(DDTCustFlyDetails _custFlyDetails)
         {
             var contract = new MLAFlightDetailsPostedBusinessEventContract();
-            contract.initialize(_custFlyDetails);
-    
+            contract.initialize(_custFlyDetails);    
             return contract;
         }
     ```
