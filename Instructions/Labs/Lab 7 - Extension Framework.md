@@ -112,8 +112,7 @@
     public static MLALoyaltyCalcPlugIn getLoyaltyCalcParm(DDTCustFlyDetails _custFlyDetails)
     {
         CustParameters custParameters = CustParameters::find();
-        SysPluginMetadataCollection metadata = new SysPluginMetadataCollection();         
-      
+        SysPluginMetadataCollection metadata = new SysPluginMetadataCollection();               
         metadata.SetManagedValue("LoyaltyCalcEngine", custParameters.MLALoyaltyCalcParameter);                 
         MLALoyaltyCalcPlugIn calc =  SysPluginFactory::Instance("Dynamics.AX.Application", classStr(MLALoyaltyCalcPlugIn), metadata);
             
